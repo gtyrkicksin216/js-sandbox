@@ -1,0 +1,20 @@
+{
+  "name": "js-sandbox",
+  "version": "0.1.0",
+  "description": "A Javascript Sandbox to show how to go from jquery to vanilla to typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:jquery": "concurrently \"node-sass -w styles.scss jquery/styles.css\" \"cd jquery/ && whs\"",
+    "dev:vanilla": "concurrently \"node-sass -w styles.scss vanilla-js/styles.css\" \"cd vanilla-js/ && whs\"",
+    "dev:typescript": "concurrently \"cd typescript && tsc -w index.ts index.js\" \"node-sass -w styles.scss typescript/styles.css\" \"cd typescript/ && whs\""
+  },
+  "author": "Ryan Wood",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "node-sass": "^4.11.0",
+    "typescript": "^3.3.3",
+    "watch-http-server": "^0.7.6"
+  }
+}

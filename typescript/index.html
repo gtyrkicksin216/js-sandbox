@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./styles.css">
+  <title>JS Sandox - jQuery</title>
+</head>
+<body>
+  
+  <div class="todo-input__section">
+    <h1 class="todo-input__heading">Todos</h1>
+    <div class="todo-input__form">
+      <input
+        class="todo-input__input-item"
+        type="text"
+        name="todoItem"
+        id="todoItem"
+        placeholder="What do you need to do?"
+      >
+      <div class="todo-input__importance">
+        <div class="todo-input__importance-option" data-importance="low">
+          <svg id="importanceLow" class="todo-input__importance-icon icon">
+            <use xlink:href="#low">
+          </svg>
+        </div>
+        <div class="todo-input__importance-option" data-importance="medium">
+          <svg id="importanceMedium" class="todo-input__importance-icon icon">
+            <use xlink:href="#medium">
+          </svg>
+        </div>
+        <div class="todo-input__importance-option" data-importance="high">
+          <svg id="importanceHigh" class="todo-input__importance-icon icon">
+            <use xlink:href="#high">
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="todo-input__button-row">
+      <button
+        class="todo__action-button"
+        id="clearTodo"
+        type="button"
+      >Clear</button>
+      <button
+        class="todo__action-button"
+        id="addTodo"
+        type="button"
+      >Add Todo</button>
+    </div>
+  </div>
+
+  <div class="todo-items" id="todoList"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- SVG Sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><symbol id="delete" viewBox="0 0 512 512"><title>cancel</title><path style="fill:#FD003A;" d="M257,0C116.3,0,0,114.3,0,255s116.3,257,257,257s255-116.3,255-257S397.7,0,257,0z"/><path style="fill:#DD0030;" d="M512,255c0,140.7-114.3,257-255,257V0C397.7,0,512,114.3,512,255z"/><path style="fill:#E1E4FB;" d="M373.7,329.099c11.7,11.7,11.7,30.901,0,42.601c-11.7,11.699-30.601,11.699-42.601,0L257,297.299 L180.901,371.7c-11.7,11.699-30.901,11.699-42.601,0c-11.7-11.7-11.7-30.901,0-42.601L214.701,255L138.3,180.899 c-11.7-11.699-11.7-30.899,0-42.599s30.601-11.7,42.601,0L257,212.699l74.099-74.399c12.001-11.7,30.901-11.7,42.601,0 s11.7,30.901,0,42.599L299.299,255L373.7,329.099z"/><path style="fill:#C5C9F7;" d="M373.7,329.099c11.7,11.7,11.7,30.901,0,42.601c-11.7,11.699-30.601,11.699-42.601,0L257,297.299 v-84.6l74.099-74.399c12.001-11.7,30.901-11.7,42.601,0s11.7,30.901,0,42.599L299.299,255L373.7,329.099z"/></symbol><symbol id="checked" viewBox="0 0 512 512"><title>checked</title><path style="fill:#32D736;" d="M257,0C116.3,0,0,114.3,0,255s116.3,257,257,257s255-116.3,255-257S397.7,0,257,0z"/><path style="fill:#10BB67;" d="M512,255c0,140.7-114.3,257-255,257V0C397.7,0,512,114.3,512,255z"/><path style="fill:#E1E4FB;" d="M405.5,188.699L257,337.5l-10.499,10.499c-12.001,11.7-30.901,11.7-42.601,0l-97.4-95.7 c-11.7-11.7-11.7-30.599,0-42.299c11.1-11.1,31.201-11.1,42.301,0l76.399,74.099l31.8-31.8L363.199,146.4 c11.1-11.1,31.201-11.1,42.301,0C416.901,157.8,417.499,176.999,405.5,188.699z"/><path style="fill:#C5C9F7;" d="M405.5,188.699L257,337.5v-85.201L363.199,146.4c11.1-11.1,31.201-11.1,42.301,0 C416.901,157.8,417.499,176.999,405.5,188.699z"/></symbol><symbol id="medium" viewBox="0 0 512 512"><title>information</title><path style="fill:#FEA832;" d="M257,0C116.3,0,0,114.3,0,255s116.3,257,257,257s255-116.3,255-257S397.7,0,257,0z"/><path style="fill:#FE9923;" d="M512,255c0,140.7-114.3,257-255,257V0C397.7,0,512,114.3,512,255z"/><path style="fill:#E1E4FB;" d="M287,240v152c0,16.5-13.5,30-30,30s-30-13.5-30-30V240c0-16.5,13.5-30,30-30S287,223.5,287,240z"/><path style="fill:#C5C9F7;" d="M287,240v152c0,16.5-13.5,30-30,30V210C273.5,210,287,223.5,287,240z"/><path style="fill:#E1E4FB;" d="M287,120c0,16.5-13.5,30-30,30s-30-13.5-30-30s13.5-30,30-30S287,103.5,287,120z"/><path style="fill:#C5C9F7;" d="M257,150V90c16.5,0,30,13.5,30,30S273.5,150,257,150z"/></symbol><symbol id="high" viewBox="0 0 511.999 511.999"><title>star</title><path style="fill:#FEDB41;" d="M499.167,186.812l-158.144-23.105L268.502,20.568c-2.7-5.1-8.103-7.502-13.503-7.502 s-10.803,2.402-13.503,7.502l-70.522,143.14L12.832,186.812c-12.3,1.8-17.103,16.805-8.399,25.508l114.329,111.63L91.757,481.192 c-2.103,12.304,10.799,21.607,21.905,15.905l141.337-74.421l143.338,74.421c11.107,6.002,24.007-3.601,21.905-15.905L393.238,323.95 l114.329-111.63C516.27,203.616,511.467,188.612,499.167,186.812z"/><path style="fill:#FFCC33;" d="M507.566,212.32L393.238,323.95l27.004,157.242c2.103,12.304-10.799,21.907-21.905,15.905 l-143.338-74.421V13.066c5.399,0,10.803,2.402,13.503,7.502l72.523,143.14l158.144,23.105 C511.467,188.612,516.27,203.616,507.566,212.32z"/></symbol><symbol id="low" viewBox="0 0 512 512"><title>question</title><path style="fill:#17ACE8;" d="M257,0C116.3,0,0,114.3,0,255s116.3,257,257,257s255-116.3,255-257S397.7,0,257,0z"/><path style="fill:#1689FC;" d="M512,255c0,140.7-114.3,257-255,257V0C397.7,0,512,114.3,512,255z"/><path style="fill:#E1E4FB;" d="M287,421.878c0,16.5-13.5,30-30,30s-30-13.5-30-30s13.5-30,30-30S287,405.378,287,421.878z"/><path style="fill:#C5C9F7;" d="M287,421.878c0,16.5-13.5,30-30,30v-60C273.5,391.878,287,405.378,287,421.878z"/><path style="fill:#E1E4FB;" d="M347,164.878c0,28.5-13.801,55.8-36.899,72.599c-15,11.1-23.101,24.901-23.101,39.6v22.8 c0,16.5-13.5,30-30,30s-30-13.5-30-30v-22.8c0-26.4,10.499-51.601,30-72.001c5.099-5.7,11.1-11.1,17.701-15.899 c23.399-17.1,11.1-54.3-17.701-54.3c-16.5,0-30,13.5-30,30s-13.5,30-30,30s-30-13.5-30-30c0-49.501,40.499-90,90-90 S347,115.377,347,164.878z"/><path style="fill:#C5C9F7;" d="M347,164.878c0,28.5-13.801,55.8-36.899,72.599c-15,11.1-23.101,24.901-23.101,39.6v22.8 c0,16.5-13.5,30-30,30v-124.8c5.099-5.7,11.1-11.1,17.701-15.899c23.399-17.1,11.1-54.3-17.701-54.3v-60 C306.501,74.878,347,115.377,347,164.878z"/></symbol></svg>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="./index.js"></script>
+</body>
+</html>
