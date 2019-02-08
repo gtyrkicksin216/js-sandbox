@@ -5,6 +5,7 @@ var buttons = {
 var todoItem = $('#todoItem');
 var todoList = $('#todoList');
 var todoItemList = [];
+var currentItemId = 0;
 
 // clear the form and reset the importance
 function clearForm() {
@@ -24,11 +25,7 @@ function resetImportance() {
 }
 
 function deleteTodo(id) {
-  $(todoItemList).each(function(item) {
-    if (id === item.id) {
-      console.log($(id).inArray);
-    }
-  })
+  // remove todo from array
 }
 
 function addTodo(value, importance) {
@@ -40,7 +37,7 @@ function addTodo(value, importance) {
     // If there is a value
     // create a new todo with the value and importance
     var newTodo = {
-      id: todoItemList.length,
+      id: currentItemId += 1,
       value: value,
       importance: importance,
     };
@@ -63,7 +60,7 @@ function addTodo(value, importance) {
       $('use').click(function() {
         if ($(this).attr('xlink:href') === '#delete') {
           var id = Number($(this).parents('.todo-items__card').attr('data-id'));
-          console.log(id);
+          deleteTodo(id);
           $($(this).parents('.todo-items__card')).remove();
         }
       })
