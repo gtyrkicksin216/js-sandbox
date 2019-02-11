@@ -26,6 +26,18 @@ function resetImportance() {
 
 function deleteTodo(id) {
   // remove todo from array
+  $(todoItemList).each(function(index, item) {
+    if (item.id === id) {
+      todoItemList.splice(todoItemList.indexOf(item));
+    }
+  });
+}
+
+function createTodoEl(id, value, importance) {
+  // create the new todo HTML to be added to the view
+  var todoEl = '<p class="todo-items__card" data-id="' + id + '">' + value + '<svg class="todo-input__importance-icon"><use xlink:href="#' + importance + '"></svg></p>';
+  // return that item from this function
+  return todoEl;
 }
 
 function addTodo(value, importance) {
@@ -41,14 +53,10 @@ function addTodo(value, importance) {
       value: value,
       importance: importance,
     };
-    // create the new todo element to be added to the list
-    var newTodoEl;
-    // if the todo has importance use this template
-    newTodoEl = '<p class="todo-items__card" data-id="' + newTodo.id + '">' + newTodo.value + '<svg class="todo-input__importance-icon"><use xlink:href="#' + newTodo.importance + '"></svg></p>';
-    // push the todo template to the Array of todo items
-    todoItemList.push(newTodoEl);
+    // push the todo item to the Array of todo items
+    todoItemList.push(newTodo);
     // Add the new todo to the view
-    $(todoList).append(todoItemList[todoItemList.length - 1]);
+    $(todoList).append(createTodoEl(newTodo.id, newTodo.value, newTodo.importance));
     // clear the form to prepare for more input
     clearForm();
     // Add click listener for todo-card
@@ -61,7 +69,7 @@ function addTodo(value, importance) {
         if ($(this).attr('xlink:href') === '#delete') {
           var id = Number($(this).parents('.todo-items__card').attr('data-id'));
           deleteTodo(id);
-          $($(this).parents('.todo-items__card')).remove();
+          // $($(this).parents('.todo-items__card')).remove();
         }
       })
     });
