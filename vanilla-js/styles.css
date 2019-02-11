@@ -38,6 +38,7 @@ input {
   flex-direction: column;
   height: 70vh;
   max-height: 70vh;
+  min-height: 350px;
   width: 40%;
   margin: 0 5%;
   border-radius: 4px;
@@ -71,7 +72,8 @@ input {
       background: var(--importanceSelected); }
   .todo-input__importance-icon {
     height: 35px;
-    width: 35px; }
+    width: 35px;
+    pointer-events: none; }
 
 .todo-input__heading {
   flex: 0 1 auto;
@@ -104,20 +106,23 @@ input {
   .todo__action-button:active {
     box-shadow: none; }
 
-.todo-items__card {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  background: white;
-  margin: 0 0 3px;
-  padding: 25px 20px;
-  width: 95%;
-  font-size: 18px;
-  align-self: center; }
-  .todo-items__card:first-child {
-    margin-top: 15px; }
-  .todo-items__card .todo-input__importance-icon {
-    margin-left: auto; }
-  .todo-items__card.m--completed {
-    text-decoration: line-through;
-    opacity: 0.5; }
+.todo-items {
+  overflow-x: auto; }
+  .todo-items__card {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: white;
+    margin: 0 0 3px;
+    padding: 25px 20px;
+    width: 95%;
+    font-size: 18px;
+    align-self: center;
+    color: var(--fontGrey); }
+    .todo-items__card:first-child {
+      margin-top: 15px; }
+    .todo-items__card .todo-input__importance-icon {
+      margin-left: auto; }
+    .todo-items__card.m--completed {
+      text-decoration: line-through;
+      opacity: 0.5; }
