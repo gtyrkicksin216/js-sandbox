@@ -69,7 +69,7 @@ function addTodo(value, importance) {
         if ($(this).attr('xlink:href') === '#delete') {
           var id = Number($(this).parents('.todo-items__card').attr('data-id'));
           deleteTodo(id);
-          // $($(this).parents('.todo-items__card')).remove();
+          $($(this).parents('.todo-items__card')).remove();
         }
       })
     });
