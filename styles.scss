@@ -84,11 +84,20 @@ input {
             background: var(--importanceSelected);
           }
         }
+        > * {
+          pointer-events: none;
+        }
+      }
+      &-wrapper {
+        margin-left: auto;
+        pointer-events: none;
+        > * {
+          pointer-events: none;
+        }
       }
       &-icon {
         height: 35px;
         width: 35px;
-        pointer-events: none;
       }
     }
     &__heading {
@@ -156,4 +165,10 @@ input {
       }
     }
   }
+}
+
+
+// svg fix
+use {
+  pointer-events: none;
 }

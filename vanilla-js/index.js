@@ -39,24 +39,40 @@ function resetImportance() {
 
 function getImportance() {
   // get the selected importance for the current todo
-  return document.querySelector(`.todo-input__importance-option.m--selected`).getAttribute(`data-importance`);
+  const importanceOption = document.querySelector(`.todo-input__importance-option.m--selected`);
+  if (importanceOption) {
+    if (importanceOption.getAttribute(`data-importance`)) {
+      // remove dot notation for debugging demo
+      // add breakpoint to addTodo function-call in eventListener
+      return importanceOption.getAttribute(`data-importance`);
+    } else {
+      return '';
+    }
+  }
 }
 
 // set up method to complete todo
 function completeTodo(todoEl) {
   todoEl.classList.add(`m--completed`);
+  const todoIconWrapper = todoEl.querySelector(`.todo-input__importance-wrapper`);
   const todoIcon = todoEl.querySelector(`use`);
   todoIcon.setAttribute(`xlink:href`, `#delete`);
-  todoIcon.style.cssText = `pointer-events: auto`;
-  todoIcon.addEventListener(`click`, (ev) => {
-    console.log(ev);
+  todoIconWrapper.style.cssText = `pointer-events: auto;`;
+  todoIconWrapper.addEventListener(`click`, (ev) => {
+    const todo = ev.target.parentElement;
+    deleteTodo(todo);
   });
 }
 
 // remove todo from array
-function deleteTodo(id) {
-  // loop through each item in the todoItemList
-    // if the item.id === id, remove that item
+function deleteTodo(todo) {
+  const id = todo.getAttribute(`data-id`);
+  todoItemList.forEach((item) => {
+    if (item.id === Number(todo.id)) {
+      todoItemList.splice(todoItemList.indexOf(item));
+    }
+  });
+  todo.remove();
 }
 
 // set up a method to create a new todo
@@ -67,14 +83,15 @@ function createTodoEl(id, value, importance) {
   newTodoEl.setAttribute(`data-id`, id);
   const newTodoIcon = `
     ${value}
-    <svg class="todo-input__importance-icon">
-      <use xlink:href="#${importance}">
-    </svg>
+    <span class="todo-input__importance-wrapper">
+      <svg class="todo-input__importance-icon">
+        <use xlink:href="#${importance}">
+      </svg>
+    </span>
   `;
   newTodoEl.innerHTML = newTodoIcon;
   // add event listner here to avoid overload
   newTodoEl.addEventListener(`click`, (ev) => {
-    console.log(ev);
     completeTodo(ev.target);
   }, { once: true });
   // return that item from this function
@@ -116,13 +133,13 @@ document.addEventListener(`DOMContentLoaded`, () => {
   });
   // listen for click on the add button
   buttons.addTodo.addEventListener(`click`, () => {
-    console.log(`Add button clicked`);
     addTodo(todoInput.value, getImportance());
   })
   // add listener for quick add of todos using enter
   todoInput.addEventListener(`keyup`, (ev) => {
     if (ev.code === `Enter`) {
       // add todo
+      addTodo(todoInput.value, getImportance());
     }
   });
   // listen to clicks on all importance options

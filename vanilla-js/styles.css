@@ -70,10 +70,16 @@ input {
       background: var(--importanceHover); }
     .todo-input__importance-option.m--selected {
       background: var(--importanceSelected); }
+    .todo-input__importance-option > * {
+      pointer-events: none; }
+  .todo-input__importance-wrapper {
+    margin-left: auto;
+    pointer-events: none; }
+    .todo-input__importance-wrapper > * {
+      pointer-events: none; }
   .todo-input__importance-icon {
     height: 35px;
-    width: 35px;
-    pointer-events: none; }
+    width: 35px; }
 
 .todo-input__heading {
   flex: 0 1 auto;
@@ -126,3 +132,6 @@ input {
     .todo-items__card.m--completed {
       text-decoration: line-through;
       opacity: 0.5; }
+
+use {
+  pointer-events: none; }
