@@ -18,10 +18,15 @@ Once you have forked this project, you should run `npm i` in the root. The packa
 
 ## Running your project
 
-When you are ready to run you project (all commands are run from the root folder):
+When you are ready to run you project you have a couple of options:
 
-- For jQuery - `npm run dev:jquery`
-- For VanillaJS = `npm run dev:vanilla`
-- For Typescript = `npm run dev:typescript`
+1. For Vanilla & jQuery portion, you can either run with the commands below, or you can simply open the index.html file for the portion you are working on in your browser.
+
+-OR-
+
+2. Run command to start a live server on port 8080, and will compile any SCSS changes that you may make (if you don't like my cotton candy theme :disappointed:)
+    - For jQuery - `npm run dev:jquery`
+    - For VanillaJS = `npm run dev:vanilla`
+    - For Typescript = `npm run dev:typescript`
 
 The work for these sections should be completed in their corresponding index.[js|ts] file.
